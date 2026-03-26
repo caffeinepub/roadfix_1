@@ -2,48 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --radius: 0.75rem;
-    --background: 0.12 0 0;
+    /* Yellow primary — Rapido signature */
+    --primary: 0.89 0.195 98;
+    --primary-foreground: 0.08 0 0;
+    /* Dark backgrounds */
+    --background: 0.08 0 0;
     --foreground: 0.97 0 0;
-    --card: 0.16 0 0;
+    --card: 0.12 0 0;
     --card-foreground: 0.97 0 0;
-    --popover: 0.18 0 0;
+    --popover: 0.13 0 0;
     --popover-foreground: 0.97 0 0;
-    --primary: 0.72 0.18 55;
-    --primary-foreground: 0.1 0 0;
-    --secondary: 0.22 0 0;
+    --secondary: 0.16 0 0;
     --secondary-foreground: 0.97 0 0;
-    --muted: 0.2 0 0;
-    --muted-foreground: 0.65 0 0;
-    --accent: 0.72 0.18 55;
-    --accent-foreground: 0.1 0 0;
+    --muted: 0.16 0 0;
+    --muted-foreground: 0.45 0 0;
+    --accent: 0.89 0.195 98;
+    --accent-foreground: 0.08 0 0;
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
-    --border: 1 0 0 / 10%;
-    --input: 1 0 0 / 12%;
-    --ring: 0.72 0.18 55;
-    --chart-1: 0.72 0.18 55;
-    --chart-2: 0.6 0.118 184.704;
-    --chart-3: 0.398 0.07 227.392;
+    --border: 1 0 0 / 8%;
+    --input: 1 0 0 / 10%;
+    --ring: 0.89 0.195 98;
+    /* Success green for online status */
+    --success: 0.72 0.2 145;
+    --success-foreground: 0.08 0 0;
+    --chart-1: 0.89 0.195 98;
+    --chart-2: 0.72 0.2 145;
+    --chart-3: 0.6 0.118 184.704;
     --chart-4: 0.828 0.189 84.429;
     --chart-5: 0.769 0.188 70.08;
-    --sidebar: 0.16 0 0;
+    --sidebar: 0.12 0 0;
     --sidebar-foreground: 0.97 0 0;
-    --sidebar-primary: 0.72 0.18 55;
-    --sidebar-primary-foreground: 0.1 0 0;
-    --sidebar-accent: 0.22 0 0;
+    --sidebar-primary: 0.89 0.195 98;
+    --sidebar-primary-foreground: 0.08 0 0;
+    --sidebar-accent: 0.16 0 0;
     --sidebar-accent-foreground: 0.97 0 0;
-    --sidebar-border: 1 0 0 / 10%;
-    --sidebar-ring: 0.72 0.18 55;
+    --sidebar-border: 1 0 0 / 8%;
+    --sidebar-ring: 0.89 0.195 98;
   }
 
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-slide-up-delay {
+    animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+
+  .animate-slide-up-delay-2 {
+    animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  .animate-slide-up-delay-3 {
+    animation: slideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease both;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

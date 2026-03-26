@@ -113,6 +113,7 @@ export default function AdminPanel({
         </div>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={() => setLang(lang === "en" ? "ta" : "en")}
             className="text-orange-400 text-xs"
           >
@@ -158,9 +159,9 @@ export default function AdminPanel({
                   val: "₹28,500",
                   color: "text-purple-400",
                 },
-              ].map((s, i) => (
+              ].map((s) => (
                 <div
-                  key={i}
+                  key={s.label}
                   className="bg-[#1c1f23] rounded-2xl p-4 border border-white/10"
                 >
                   <div className={`${s.color} mb-1`}>{s.icon}</div>
@@ -238,6 +239,7 @@ export default function AdminPanel({
                 {c.status === "pending" && (
                   <div className="flex gap-2">
                     <button
+                      type="button"
                       onClick={() => approve(c.id)}
                       className="flex-1 flex items-center justify-center gap-1.5 bg-green-500/20 text-green-400 border border-green-500/30 py-2 rounded-xl text-sm hover:bg-green-500/30"
                     >
@@ -245,6 +247,7 @@ export default function AdminPanel({
                       {t("Approve", "அங்கீகரி")}
                     </button>
                     <button
+                      type="button"
                       onClick={() => reject(c.id)}
                       className="flex-1 flex items-center justify-center gap-1.5 bg-red-500/10 text-red-400 border border-red-500/30 py-2 rounded-xl text-sm hover:bg-red-500/20"
                     >
@@ -263,7 +266,7 @@ export default function AdminPanel({
             <h2 className="font-bold text-lg">{t("Users", "பயனர்கள்")}</h2>
             {["Ravi Kumar", "Priya Sharma", "Arjun Das"].map((name, i) => (
               <div
-                key={i}
+                key={name}
                 className="bg-[#1c1f23] rounded-2xl p-4 border border-white/10 flex items-center gap-3"
               >
                 <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 font-bold">
@@ -320,6 +323,7 @@ export default function AdminPanel({
           ] as const
         ).map(([s, icon, label]) => (
           <button
+            type="button"
             key={s}
             onClick={() => setTab(s)}
             className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${

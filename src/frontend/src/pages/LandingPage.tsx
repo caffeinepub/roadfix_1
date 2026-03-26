@@ -52,37 +52,47 @@ export default function LandingPage({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0b0c0e] text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0b0c0e]/90 backdrop-blur border-b border-white/10">
+      <header className="sticky top-0 z-50 bg-background/90 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-              <span className="text-black font-bold text-sm">R</span>
+            <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-primary">
+              <span className="text-primary-foreground font-display font-black text-base">
+                R
+              </span>
             </div>
-            <span className="font-bold text-xl">RoadFix</span>
+            <span className="font-display font-black text-xl tracking-tight">
+              RoadFix
+            </span>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-gray-400">
-            <a href="#how" className="hover:text-white transition-colors">
+          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
+            <a href="#how" className="hover:text-foreground transition-colors">
               How It Works
             </a>
-            <a href="#why" className="hover:text-white transition-colors">
+            <a href="#why" className="hover:text-foreground transition-colors">
               Why RoadFix
             </a>
-            <a href="#reviews" className="hover:text-white transition-colors">
+            <a
+              href="#reviews"
+              className="hover:text-foreground transition-colors"
+            >
               Reviews
             </a>
             <button
+              type="button"
               onClick={() => setLang(lang === "en" ? "ta" : "en")}
-              className="text-orange-400 font-medium"
+              className="text-primary font-semibold"
             >
               {lang === "en" ? "தமிழ்" : "EN"}
             </button>
           </nav>
           <div className="hidden md:flex items-center gap-3">
             <button
+              type="button"
               onClick={onLogin}
-              className="border border-orange-500 text-orange-400 px-4 py-1.5 rounded-full text-sm hover:bg-orange-500 hover:text-black transition-all"
+              className="border-2 border-primary text-primary px-5 py-2 rounded-full text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-all"
+              data-ocid="nav.login.button"
             >
               {t("Log In / Sign Up", "உள்நுழை / பதிவு")}
             </button>
@@ -96,16 +106,19 @@ export default function LandingPage({
           </button>
         </div>
         {menuOpen && (
-          <div className="md:hidden bg-[#141518] border-t border-white/10 p-4 flex flex-col gap-3 text-sm">
+          <div className="md:hidden bg-card border-t border-border p-4 flex flex-col gap-3 text-sm">
             <button
+              type="button"
               onClick={onLogin}
-              className="bg-orange-500 text-black px-4 py-2 rounded-lg font-semibold"
+              className="bg-primary text-primary-foreground px-4 py-2.5 rounded-full font-bold"
+              data-ocid="mobile.nav.login.button"
             >
               {t("Log In / Sign Up", "உள்நுழை / பதிவு")}
             </button>
             <button
+              type="button"
               onClick={() => setLang(lang === "en" ? "ta" : "en")}
-              className="text-orange-400"
+              className="text-primary font-semibold"
             >
               {lang === "en" ? "தமிழ்" : "EN"}
             </button>
@@ -116,9 +129,10 @@ export default function LandingPage({
       {/* Hero - Map Section */}
       <section className="relative h-[92vh] min-h-[600px] overflow-hidden">
         {/* Fake Map Background */}
-        <div className="absolute inset-0 bg-[#1a1d23]">
+        <div className="absolute inset-0 bg-card">
           <svg
-            className="absolute inset-0 w-full h-full opacity-20"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full opacity-15"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
@@ -140,7 +154,8 @@ export default function LandingPage({
           </svg>
           {/* Road lines */}
           <svg
-            className="absolute inset-0 w-full h-full opacity-30"
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full opacity-20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <line
@@ -148,32 +163,51 @@ export default function LandingPage({
               y1="40%"
               x2="100%"
               y2="38%"
-              stroke="#4a5568"
-              strokeWidth="8"
+              stroke="#6b7280"
+              strokeWidth="10"
             />
             <line
               x1="30%"
               y1="0"
               x2="32%"
               y2="100%"
-              stroke="#4a5568"
-              strokeWidth="8"
+              stroke="#6b7280"
+              strokeWidth="10"
             />
             <line
               x1="65%"
               y1="0"
               x2="63%"
               y2="100%"
-              stroke="#4a5568"
-              strokeWidth="6"
+              stroke="#6b7280"
+              strokeWidth="7"
             />
             <line
               x1="0"
               y1="70%"
               x2="100%"
               y2="68%"
-              stroke="#4a5568"
-              strokeWidth="6"
+              stroke="#6b7280"
+              strokeWidth="7"
+            />
+            {/* Lane markings */}
+            <line
+              x1="0"
+              y1="40%"
+              x2="100%"
+              y2="38%"
+              stroke="#374151"
+              strokeWidth="2"
+              strokeDasharray="20 15"
+            />
+            <line
+              x1="30%"
+              y1="0"
+              x2="32%"
+              y2="100%"
+              stroke="#374151"
+              strokeWidth="2"
+              strokeDasharray="20 15"
             />
           </svg>
         </div>
@@ -182,39 +216,43 @@ export default function LandingPage({
         {CAPTAIN_MARKERS.map((m) => (
           <div
             key={m.id}
-            className="absolute z-10 flex items-center gap-1.5 bg-[#1c1f23]/90 border border-white/20 rounded-full px-3 py-1.5 shadow-lg text-xs"
+            className="absolute z-10 flex items-center gap-1.5 bg-card/95 border border-border rounded-full px-3 py-1.5 shadow-lg text-xs"
             style={{ top: m.top, left: m.left }}
           >
-            <div className="w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
-              <MapPin size={10} className="text-black" />
+            <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+              <MapPin size={10} className="text-primary-foreground" />
             </div>
             <div>
-              <div className="text-white font-medium">{m.name}</div>
-              <div className="text-orange-400">{m.eta} away</div>
+              <div className="text-foreground font-semibold">{m.name}</div>
+              <div className="text-primary">{m.eta} away</div>
             </div>
           </div>
         ))}
 
         {/* Right Stats Panel */}
         <div className="absolute top-6 right-4 z-20 hidden md:flex flex-col gap-3 w-52">
-          <div className="bg-[#1c1f23]/90 backdrop-blur border border-white/10 rounded-xl p-3">
-            <div className="text-xs text-gray-400">Nearby Captains</div>
-            <div className="text-2xl font-bold text-orange-400">8 Online</div>
+          <div className="bg-card/90 backdrop-blur border border-border rounded-2xl p-3">
+            <div className="text-xs text-muted-foreground">Nearby Captains</div>
+            <div className="text-2xl font-display font-black text-primary">
+              8 Online
+            </div>
           </div>
-          <div className="bg-[#1c1f23]/90 backdrop-blur border border-white/10 rounded-xl p-3">
-            <div className="text-xs text-gray-400">Est. Arrival</div>
-            <div className="text-2xl font-bold text-white">5–10 min</div>
+          <div className="bg-card/90 backdrop-blur border border-border rounded-2xl p-3">
+            <div className="text-xs text-muted-foreground">Est. Arrival</div>
+            <div className="text-2xl font-display font-black">5–10 min</div>
           </div>
-          <div className="bg-[#1c1f23]/90 backdrop-blur border border-white/10 rounded-xl p-4">
-            <div className="text-xs text-gray-400 mb-2">Recent Activity</div>
+          <div className="bg-card/90 backdrop-blur border border-border rounded-2xl p-4">
+            <div className="text-xs text-muted-foreground mb-2">
+              Recent Activity
+            </div>
             {[
               "Arjun rescued in 7min",
               "Priya - battery fixed",
               "Raj - tire changed",
-            ].map((a, i) => (
-              <div key={i} className="flex items-center gap-2 py-1">
-                <div className="w-2 h-2 bg-green-400 rounded-full" />
-                <span className="text-xs text-gray-300">{a}</span>
+            ].map((a) => (
+              <div key={a} className="flex items-center gap-2 py-1">
+                <div className="w-2 h-2 bg-success rounded-full" />
+                <span className="text-xs text-muted-foreground">{a}</span>
               </div>
             ))}
           </div>
@@ -222,54 +260,60 @@ export default function LandingPage({
 
         {/* Center Request Card */}
         <div className="absolute inset-0 flex items-center justify-center z-20 px-4">
-          <div className="bg-[#1c1f23]/95 backdrop-blur border border-white/10 rounded-2xl p-6 w-full max-w-sm shadow-2xl">
-            <h1 className="text-xl font-bold text-white mb-1">
+          <div className="bg-card/98 backdrop-blur border border-border rounded-3xl p-6 w-full max-w-sm shadow-2xl">
+            <h1 className="text-xl font-display font-black text-foreground mb-1">
               {t("Need Breakdown Assistance?", "வாகன கோளாறு உதவி வேண்டுமா?")}
             </h1>
-            <p className="text-xs text-gray-400 mb-4">
+            <p className="text-xs text-muted-foreground mb-4">
               {t(
                 "Instant Help for Your Vehicle, Anytime Anywhere",
                 "எப்போதும் எங்கும் உடனடி உதவி",
               )}
             </p>
-            <div className="flex items-center gap-2 bg-[#262a31] rounded-lg px-3 py-2.5 mb-4 border border-white/10">
-              <MapPin size={16} className="text-orange-400 flex-shrink-0" />
-              <span className="text-sm text-gray-300">
+            <div className="flex items-center gap-2 bg-secondary rounded-xl px-3 py-2.5 mb-4 border border-border">
+              <MapPin size={16} className="text-primary flex-shrink-0" />
+              <span className="text-sm text-muted-foreground">
                 {t("Current Location detected", "தற்போதைய இடம் கண்டறியப்பட்டது")}
               </span>
             </div>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-5">
               {SERVICE_TYPES.map((s) => (
                 <button
+                  type="button"
                   key={s}
                   onClick={() => setSelectedService(s)}
-                  className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                  className={`text-xs px-3 py-1.5 rounded-full border-2 transition-all font-semibold ${
                     selectedService === s
-                      ? "bg-orange-500 border-orange-500 text-black font-semibold"
-                      : "border-white/20 text-gray-300 hover:border-orange-400"
+                      ? "bg-primary border-primary text-primary-foreground"
+                      : "border-border text-muted-foreground hover:border-primary/60"
                   }`}
+                  data-ocid="landing.service.tab"
                 >
                   {s}
                 </button>
               ))}
             </div>
             <button
+              type="button"
               onClick={onLogin}
-              className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold py-3 rounded-xl transition-all text-sm"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-display font-black py-4 rounded-full transition-all text-base shadow-primary"
+              data-ocid="landing.request.primary_button"
             >
               {t("Request Help Now", "இப்போது உதவி கோரவும்")}
             </button>
             {/* Demo login shortcuts */}
-            <div className="mt-3 pt-3 border-t border-white/10">
-              <p className="text-xs text-gray-500 mb-2 text-center">
+            <div className="mt-4 pt-4 border-t border-border">
+              <p className="text-xs text-muted-foreground mb-2 text-center">
                 Demo Quick Login
               </p>
               <div className="grid grid-cols-3 gap-1.5">
                 {(["user", "captain", "admin"] as const).map((r) => (
                   <button
+                    type="button"
                     key={r}
                     onClick={() => loginAs(r)}
-                    className="text-xs py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 capitalize"
+                    className="text-xs py-2 rounded-full bg-secondary hover:bg-primary/20 border border-border text-muted-foreground font-semibold capitalize transition-all"
+                    data-ocid={`landing.demo.${r}.button`}
                   >
                     {r}
                   </button>
@@ -281,7 +325,7 @@ export default function LandingPage({
 
         {/* Bottom Tab Bar Mock */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
-          <div className="bg-[#1c1f23]/90 backdrop-blur border border-white/10 rounded-full px-6 py-3 flex items-center gap-6">
+          <div className="bg-card/90 backdrop-blur border border-border rounded-full px-8 py-3 flex items-center gap-8 shadow-xl">
             {[
               { icon: "🏠", label: "Home", active: true },
               { icon: "📋", label: "Bookings" },
@@ -291,11 +335,14 @@ export default function LandingPage({
               <div
                 key={tab.label}
                 className={`flex flex-col items-center gap-0.5 cursor-pointer ${
-                  tab.active ? "text-orange-400" : "text-gray-500"
+                  tab.active ? "text-primary" : "text-muted-foreground"
                 }`}
               >
                 <span className="text-lg">{tab.icon}</span>
-                <span className="text-[10px]">{tab.label}</span>
+                <span className="text-[10px] font-semibold">{tab.label}</span>
+                {tab.active && (
+                  <div className="w-1 h-1 bg-primary rounded-full mt-0.5" />
+                )}
               </div>
             ))}
           </div>
@@ -303,9 +350,9 @@ export default function LandingPage({
       </section>
 
       {/* How It Works */}
-      <section id="how" className="py-20 bg-[#0f1012]">
+      <section id="how" className="py-20 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-display font-black text-center mb-12">
             {t("How RoadFix Works", "RoadFix எவ்வாறு செயல்படுகிறது")}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -336,17 +383,19 @@ export default function LandingPage({
               },
             ].map((step, i) => (
               <div
-                key={i}
-                className="bg-[#1c1f23] rounded-2xl p-6 border border-white/10"
+                key={step.title}
+                className="bg-card rounded-3xl p-6 border border-border"
               >
-                <div className="w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-primary/15 text-primary rounded-2xl flex items-center justify-center mb-4">
                   {step.icon}
                 </div>
-                <div className="text-xs text-orange-400 font-semibold mb-1">
+                <div className="text-xs text-primary font-bold tracking-widest mb-1">
                   STEP {i + 1}
                 </div>
-                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-400">{step.desc}</p>
+                <h3 className="font-display font-bold text-lg mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -354,9 +403,9 @@ export default function LandingPage({
       </section>
 
       {/* Why Choose */}
-      <section id="why" className="py-20 bg-[#0b0c0e]">
+      <section id="why" className="py-20 bg-card">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-display font-black text-center mb-12">
             {t("Why Choose RoadFix?", "RoadFix ஏன் தேர்ந்தெடுக்க வேண்டும்?")}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -385,15 +434,15 @@ export default function LandingPage({
                   "முன்கூட்டியே கட்டணம். மறைமுக கட்டணம் இல்லை.",
                 ),
               },
-            ].map((item, i) => (
+            ].map((item) => (
               <div
-                key={i}
-                className="flex gap-4 p-6 bg-[#1c1f23] rounded-2xl border border-white/10"
+                key={item.title}
+                className="flex gap-4 p-6 bg-secondary rounded-3xl border border-border"
               >
                 <span className="text-3xl">{item.icon}</span>
                 <div>
-                  <h3 className="font-bold mb-1">{item.title}</h3>
-                  <p className="text-sm text-gray-400">{item.desc}</p>
+                  <h3 className="font-display font-bold mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -402,34 +451,37 @@ export default function LandingPage({
       </section>
 
       {/* Testimonials */}
-      <section id="reviews" className="py-20 bg-[#0f1012]">
+      <section id="reviews" className="py-20 bg-background">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-display font-black text-center mb-12">
             {t("What Users Say", "பயனர்கள் கூறுவது")}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((t2, i) => (
+            {TESTIMONIALS.map((t2) => (
               <div
-                key={i}
-                className="bg-[#1c1f23] rounded-2xl p-6 border border-white/10"
+                key={t2.name}
+                className="bg-card rounded-3xl p-6 border border-border"
               >
                 <div className="flex mb-3">
-                  {Array.from({ length: t2.rating }).map((_, j) => (
+                  {Array.from(
+                    { length: t2.rating },
+                    (_, starIdx) => starIdx,
+                  ).map((starIdx) => (
                     <Star
-                      key={j}
+                      key={`${t2.name}-star-${starIdx}`}
                       size={14}
-                      className="fill-orange-400 text-orange-400"
+                      className="fill-primary text-primary"
                     />
                   ))}
                 </div>
-                <p className="text-sm text-gray-300 mb-4 italic">
+                <p className="text-sm text-muted-foreground mb-4 italic">
                   &ldquo;{t2.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-orange-400 font-bold text-sm">
+                  <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center text-primary font-display font-bold text-sm">
                     {t2.name[0]}
                   </div>
-                  <span className="text-sm font-medium">{t2.name}</span>
+                  <span className="text-sm font-semibold">{t2.name}</span>
                 </div>
               </div>
             ))}
@@ -438,17 +490,19 @@ export default function LandingPage({
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0b0c0e] border-t border-white/10 py-12">
+      <footer className="bg-card border-t border-border py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 bg-orange-500 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xs">R</span>
+                <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center">
+                  <span className="text-primary-foreground font-display font-black text-sm">
+                    R
+                  </span>
                 </div>
-                <span className="font-bold">RoadFix</span>
+                <span className="font-display font-black text-lg">RoadFix</span>
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 {t(
                   "Instant Help for Your Vehicle, Anytime Anywhere",
                   "எப்போதும் எங்கும் உடனடி உதவி",
@@ -461,13 +515,13 @@ export default function LandingPage({
               ["Legal", ["Privacy Policy", "Terms", "Refund Policy"]],
             ].map(([heading, links]) => (
               <div key={heading as string}>
-                <h4 className="font-semibold text-sm mb-3">
+                <h4 className="font-display font-bold text-sm mb-3">
                   {heading as string}
                 </h4>
                 {(links as string[]).map((l) => (
                   <div
                     key={l}
-                    className="text-xs text-gray-500 mb-1.5 cursor-pointer hover:text-gray-300"
+                    className="text-xs text-muted-foreground mb-1.5 cursor-pointer hover:text-foreground transition-colors"
                   >
                     {l}
                   </div>
@@ -475,14 +529,27 @@ export default function LandingPage({
               </div>
             ))}
           </div>
-          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-gray-600">
-              © 2026 RoadFix. All rights reserved.
+          <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} RoadFix. All rights reserved.
             </p>
-            <div className="flex gap-3">
-              <Phone size={16} className="text-gray-500" />
-              <span className="text-xs text-gray-500">+91 98765 43210</span>
+            <div className="flex gap-3 items-center">
+              <Phone size={14} className="text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">
+                +91 98765 43210
+              </span>
             </div>
+            <p className="text-xs text-muted-foreground">
+              Built with ❤️ using{" "}
+              <a
+                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                className="text-primary hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                caffeine.ai
+              </a>
+            </p>
           </div>
         </div>
       </footer>

@@ -16,30 +16,43 @@ export default function AuthModal({
   const [tab, setTab] = useState<"login" | "signup">("login");
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-[#1c1f23] rounded-2xl w-full max-w-sm border border-white/10 shadow-2xl">
-        <div className="flex items-center justify-between p-5 border-b border-white/10">
-          <h2 className="font-bold text-lg">
-            {t("Welcome to RoadFix", "RoadFix-க்கு வரவேற்கிறோம்")}
-          </h2>
+    <div
+      className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4"
+      data-ocid="auth.modal"
+    >
+      <div className="bg-card rounded-3xl w-full max-w-sm border border-border shadow-2xl">
+        <div className="flex items-center justify-between p-5 border-b border-border">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center">
+              <span className="text-primary-foreground font-display font-black text-sm">
+                R
+              </span>
+            </div>
+            <h2 className="font-display font-black text-lg">
+              {t("Welcome to RoadFix", "RoadFix-க்கு வரவேற்கிறோம்")}
+            </h2>
+          </div>
           <button
             type="button"
             onClick={onClose}
-            className="text-gray-400 hover:text-white"
+            className="text-muted-foreground hover:text-foreground"
+            data-ocid="auth.close_button"
           >
             <X size={20} />
           </button>
         </div>
-        <div className="flex border-b border-white/10">
+        <div className="flex border-b border-border">
           {(["login", "signup"] as const).map((t2) => (
             <button
+              type="button"
               key={t2}
               onClick={() => setTab(t2)}
-              className={`flex-1 py-3 text-sm font-medium capitalize transition-colors ${
+              className={`flex-1 py-3 text-sm font-bold capitalize transition-colors ${
                 tab === t2
-                  ? "text-orange-400 border-b-2 border-orange-400"
-                  : "text-gray-400"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-muted-foreground"
               }`}
+              data-ocid={`auth.${t2}.tab`}
             >
               {t2 === "login" ? t("Log In", "உள்நுழை") : t("Sign Up", "பதிவு")}
             </button>
@@ -50,16 +63,20 @@ export default function AuthModal({
             <div className="space-y-3">
               <input
                 placeholder={t("Email or Phone", "மின்னஞ்சல் அல்லது தொலைபேசி")}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-orange-400"
+                className="w-full bg-secondary border border-border rounded-2xl px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
+                data-ocid="auth.login.input"
               />
               <input
                 type="password"
                 placeholder={t("Password", "கடவுச்சொல்")}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-orange-400"
+                className="w-full bg-secondary border border-border rounded-2xl px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
+                data-ocid="auth.password.input"
               />
               <button
+                type="button"
                 onClick={() => onLogin("user")}
-                className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold py-2.5 rounded-xl text-sm transition-all"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-display font-black py-3.5 rounded-full text-sm transition-all shadow-primary"
+                data-ocid="auth.login.submit_button"
               >
                 {t("Log In as User", "பயனராக உள்நுழை")}
               </button>
@@ -68,36 +85,43 @@ export default function AuthModal({
             <div className="space-y-3">
               <input
                 placeholder={t("Full Name", "முழு பெயர்")}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-orange-400"
+                className="w-full bg-secondary border border-border rounded-2xl px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
+                data-ocid="auth.signup.name.input"
               />
               <input
                 placeholder={t("Email", "மின்னஞ்சல்")}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-orange-400"
+                className="w-full bg-secondary border border-border rounded-2xl px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
+                data-ocid="auth.signup.email.input"
               />
               <input
                 placeholder={t("Phone Number", "தொலைபேசி எண்")}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-orange-400"
+                className="w-full bg-secondary border border-border rounded-2xl px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
+                data-ocid="auth.signup.phone.input"
               />
               <button
+                type="button"
                 onClick={() => onLogin("user")}
-                className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold py-2.5 rounded-xl text-sm"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-display font-black py-3.5 rounded-full text-sm shadow-primary"
+                data-ocid="auth.signup.submit_button"
               >
                 {t("Create Account", "கணக்கு உருவாக்கு")}
               </button>
             </div>
           )}
-          <div className="mt-4 pt-4 border-t border-white/10">
-            <p className="text-xs text-gray-400 text-center mb-3">
+          <div className="mt-4 pt-4 border-t border-border">
+            <p className="text-xs text-muted-foreground text-center mb-3 font-semibold">
               Demo Quick Login
             </p>
             <div className="grid grid-cols-3 gap-2">
               {(["user", "captain", "admin"] as const).map((r) => (
                 <button
+                  type="button"
                   key={r}
                   onClick={() =>
                     r === "captain" ? onCaptainReg() : onLogin(r)
                   }
-                  className="text-xs py-2 rounded-lg bg-white/5 hover:bg-orange-500/20 border border-white/10 text-gray-300 capitalize font-medium"
+                  className="text-xs py-2.5 rounded-full bg-secondary hover:bg-primary/20 border border-border text-muted-foreground font-bold capitalize transition-all"
+                  data-ocid={`auth.demo.${r}.button`}
                 >
                   {r}
                 </button>
